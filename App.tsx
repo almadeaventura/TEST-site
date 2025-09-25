@@ -22,7 +22,7 @@ const App: React.FC = () => {
         
         <div className="mb-8 w-full max-w-sm md:max-w-md">
           <img 
-            src="./images/IMG.webp" 
+            src="/images/IMG.webp" 
             alt="Dos personas haciendo paracaidismo tándem sobre una zona costera."
             className="rounded-lg shadow-2xl w-full h-auto object-cover"
             onError={handleImageError}
