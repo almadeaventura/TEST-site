@@ -1,10 +1,19 @@
-
 import React from 'react';
 import WhatsAppButton from './components/WhatsAppButton';
 
 const App: React.FC = () => {
   // Replace with your actual WhatsApp number including country code without '+' or '00'
   const whatsappNumber = "5491112345678"; 
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    console.error("Error al cargar la imagen. El navegador no pudo encontrarla en la ruta especificada.");
+    console.error("Ruta intentada:", (e.target as HTMLImageElement).src);
+    console.error("Detalles del evento de error:", e);
+  };
+
+  const handleImageLoad = () => {
+    console.log("¡Imagen cargada con éxito!");
+  };
 
   return (
     <div className="relative min-h-screen bg-gray-900 text-white flex flex-col items-center justify-center overflow-hidden p-4">
@@ -13,9 +22,11 @@ const App: React.FC = () => {
         
         <div className="mb-8 w-full max-w-sm md:max-w-md">
           <img 
-            src="/images/IMG.webp" 
+            src="./images/IMG.webp" 
             alt="Dos personas haciendo paracaidismo tándem sobre una zona costera."
             className="rounded-lg shadow-2xl w-full h-auto object-cover"
+            onError={handleImageError}
+            onLoad={handleImageLoad}
           />
         </div>
 
