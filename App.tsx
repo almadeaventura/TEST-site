@@ -6,9 +6,11 @@ const App: React.FC = () => {
   const whatsappNumber = "5491112345678"; 
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+    const imgElement = e.target as HTMLImageElement;
     console.error("Error al cargar la imagen. El navegador no pudo encontrarla en la ruta especificada.");
-    console.error("Ruta intentada:", (e.target as HTMLImageElement).src);
-    console.error("Detalles del evento de error:", e);
+    console.error("Ruta intentada:", imgElement.src);
+    // Avoid logging the entire event object to prevent cyclic structure errors.
+    console.error("Tipo de evento:", e.type);
   };
 
   const handleImageLoad = () => {
@@ -22,12 +24,15 @@ const App: React.FC = () => {
         
         <div className="mb-8 w-full max-w-sm md:max-w-md">
           <img 
-            src="/images/IMG.webp" 
+            src="https://images.pexels.com/photos/302804/pexels-photo-302804.jpeg?auto=compress&cs=tinysrgb&w=600" 
             alt="Dos personas haciendo paracaidismo tándem sobre una zona costera."
             className="rounded-lg shadow-2xl w-full h-auto object-cover"
             onError={handleImageError}
             onLoad={handleImageLoad}
           />
+          <p className="text-xs text-gray-500 mt-2 text-right px-1">
+            Creator: Skydive Photos | Date: 2024-05-20 | ID: VRC-SKY-011
+          </p>
         </div>
 
         <div className="bg-blue-500 text-white text-sm font-semibold px-4 py-1 rounded-full mb-4">
